@@ -10,6 +10,9 @@ public class PlayerController : MonoBehaviour
     
     // 이동 방향 벡터
     private Vector3 _moveDir;
+    
+    // 이동 속도
+    [SerializeField] private float _moveSpeed = 6.0f;
 
     #region 유니티 생명주기
     private void Awake()
@@ -31,7 +34,18 @@ public class PlayerController : MonoBehaviour
         _moveAction.canceled -= OnMove;
         _inputActions.Disable();
     }
+
+    private void Update()
+    {
+        Movement();
+    }
     #endregion
+
+    private void Movement()
+    {
+        transform.Translate(_moveDir * (_moveSpeed * Time.deltaTime));
+    }
+
     
     private void OnMove(InputAction.CallbackContext ctx)
     {
@@ -46,4 +60,6 @@ public class PlayerController : MonoBehaviour
         }
         Debug.Log($"Move {_moveDir}");
     }
+    
+    
 }
