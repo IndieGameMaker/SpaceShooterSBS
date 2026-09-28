@@ -364,7 +364,7 @@ ModelImporter:
       name: Player-Idle
       takeName: Player
       internalID: 0
-      firstFrame: 5
+      firstFrame: 6
       lastFrame: 80
       wrapMode: 0
       orientationOffsetY: 0
