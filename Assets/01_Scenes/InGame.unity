@@ -270,8 +270,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FollowCam
   target: {fileID: 969595182}
-  distance: 8
-  height: 3
+  distance: 3.7
+  height: 1.76
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
