@@ -125,3 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4964691cad243ad9830c36a3fc4a43, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RemoveBullet
+  _sparkEffect: {fileID: 8414567100578322492, guid: 4e3bf5e5ac2ba4da4905db9dc87d1285, type: 3}
