@@ -619,6 +619,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   _moveSpeed: 6
   _turnSpeed: 30
+--- !u!114 &969595185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969595180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 450aa6b892ae54b93bfef34c6d6eb25c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FireController
+  _firePos: {fileID: 316564768}
+  _bulletPrefab: {fileID: 2081667579395329317, guid: 5cc0bff864b5941569675450e2a0d3fb, type: 3}
+  _fireAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &1118035553
 GameObject:
   m_ObjectHideFlags: 0
@@ -870,6 +885,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100092, guid: 8daa50189dd68ef46b8bd15dad17a34c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 969595183}
+    - targetCorrespondingSourceObject: {fileID: 100092, guid: 8daa50189dd68ef46b8bd15dad17a34c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 969595185}
   m_SourcePrefab: {fileID: 100100000, guid: 8daa50189dd68ef46b8bd15dad17a34c, type: 3}
 --- !u!1001 &942573183789808370
 PrefabInstance:

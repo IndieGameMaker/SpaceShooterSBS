@@ -23,6 +23,15 @@ public class FireController : MonoBehaviour
 
     private void Fire(InputAction.CallbackContext ctx)
     {
-        
+        // Instantiate (생성할객체, 좌표, 각도, [부모객체])
+        Instantiate(_bulletPrefab, _firePos.position, _firePos.rotation);
     }
+
+    // private void Update()
+    // {
+    //     if (Input.GetMouseButtonDown(0))
+    //     {
+    //         Debug.Log("Fire");
+    //     }
+    // }
 }
