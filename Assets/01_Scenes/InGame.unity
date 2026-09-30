@@ -131,7 +131,7 @@ GameObject:
   m_Layer: 0
   m_Name: FirePos
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -851,6 +851,14 @@ PrefabInstance:
     - target: {fileID: 13700000, guid: 8daa50189dd68ef46b8bd15dad17a34c, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 8daa50189dd68ef46b8bd15dad17a34c, type: 3}
+      propertyPath: m_ForceMeshLod
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: 8daa50189dd68ef46b8bd15dad17a34c, type: 3}
+      propertyPath: m_MeshLodSelectionBias
+      value: 1.65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

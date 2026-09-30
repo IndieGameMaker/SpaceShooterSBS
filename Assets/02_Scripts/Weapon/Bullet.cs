@@ -9,7 +9,7 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        
+        // 로컬 좌표계 기준으로 Force를 적용
         _rb.AddRelativeForce(Vector3.forward * _force); // 800 뉴튼
     }
 }
