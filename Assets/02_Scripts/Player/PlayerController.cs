@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour
         // 회전 로직
         var mouseDir = _mouseDeltaAction.ReadValue<Vector2>().x;
         transform.Rotate(0, mouseDir * _turnSpeed * Time.deltaTime, 0);
-        Debug.Log($"Mouse Delta X : {mouseDir}");
+        // Debug.Log($"Mouse Delta X : {mouseDir}");
     }
 
     
@@ -87,7 +87,7 @@ public class PlayerController : MonoBehaviour
         {
             _moveDir = Vector3.zero; // (0, 0, 0)
         }
-        Debug.Log($"Move {_moveDir}");
+        // Debug.Log($"Move {_moveDir}");
     }
     
     
