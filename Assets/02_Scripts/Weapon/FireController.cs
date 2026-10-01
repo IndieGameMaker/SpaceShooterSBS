@@ -9,6 +9,14 @@ public class FireController : MonoBehaviour
 
     [SerializeField] private InputActionReference _fireAction;
 
+    private MeshRenderer _muzzleFlash;
+
+    private void Start()
+    {
+        _muzzleFlash = _firePos.GetComponentInChildren<MeshRenderer>();
+        _muzzleFlash.enabled = false;
+    }
+
     private void OnEnable()
     {
         _fireAction.action.performed += Fire;
