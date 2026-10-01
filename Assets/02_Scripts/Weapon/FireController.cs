@@ -46,8 +46,11 @@ public class FireController : MonoBehaviour
         
         // (0, 0) , (0, 0.5) , (0.5, 0) , (0.5, 0.5)
         Vector2 offset = new Vector2(Random.Range(0,2), Random.Range(0, 2)) * 0.5f;
-        
         _muzzleFlash.material.mainTextureOffset = offset;
+        
+        // Scale 변경
+        float scale = Random.Range(0.8f, 2.0f);
+        _muzzleFlash.transform.localScale = Vector3.one * scale; //new Vector3(scale, scale, scale); 
         
         _muzzleFlash.enabled = true;
         yield return new WaitForSeconds(0.2f);
