@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,6 +34,15 @@ public class FireController : MonoBehaviour
     {
         // Instantiate (생성할객체, 좌표, 각도, [부모객체])
         Instantiate(_bulletPrefab, _firePos.position, _firePos.rotation);
+
+        StartCoroutine(ShowMuzzleFlash());
+    }
+
+    private IEnumerator ShowMuzzleFlash()
+    {
+        _muzzleFlash.enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        _muzzleFlash.enabled = false;
     }
 
     // private void Update()
