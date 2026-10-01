@@ -10,11 +10,15 @@ public class FireController : MonoBehaviour
     [SerializeField] private InputActionReference _fireAction;
 
     private MeshRenderer _muzzleFlash;
+    private Light _fireLight;
 
     private void Start()
     {
         _muzzleFlash = _firePos.GetComponentInChildren<MeshRenderer>();
         _muzzleFlash.enabled = false;
+        
+        _fireLight = _firePos.GetComponentInChildren<Light>();
+        _fireLight.intensity = 0.0f;
     }
 
     private void OnEnable()
@@ -55,10 +59,14 @@ public class FireController : MonoBehaviour
         // 회전 처리
         float angle = Random.Range(0, 360);
         _muzzleFlash.transform.localRotation = Quaternion.Euler(0, 0, angle);
+
+        _fireLight.intensity = scale;
         
         _muzzleFlash.enabled = true;
         yield return new WaitForSeconds(0.2f);
         _muzzleFlash.enabled = false;
+        
+        _fireLight.intensity = 0.0f;
     }
 }
 
