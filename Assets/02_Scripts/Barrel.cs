@@ -3,7 +3,8 @@ using UnityEngine;
 public class Barrel : MonoBehaviour
 {
     [SerializeField] private int _hitCount = 0;
-
+    [SerializeField] private GameObject _expEffect;
+    
     private void OnCollisionEnter(Collision coll)
     {
         if (coll.collider.CompareTag("BULLET"))
@@ -30,5 +31,9 @@ public class Barrel : MonoBehaviour
         
         // 3초후에 베럴을 사라지도록 ... 삭제 제거
         Destroy(gameObject, 3f);
+        
+        // 폭발효과 생성한 후 5초에 폭발 프리팹을 소멸
+        var obj = Instantiate(_expEffect, transform.position, Quaternion.identity);
+        Destroy(obj, 5f);
     }
 }
