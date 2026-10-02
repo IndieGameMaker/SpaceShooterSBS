@@ -6,11 +6,13 @@ public class FireController : MonoBehaviour
 {
     [SerializeField] private Transform _firePos;
     [SerializeField] private GameObject _bulletPrefab;
-
+    [SerializeField] private AudioClip _fireSFX;
+    
     [SerializeField] private InputActionReference _fireAction;
-
+    
     private MeshRenderer _muzzleFlash;
     private Light _fireLight;
+    private AudioSource _audio;
 
     private void Start()
     {
@@ -19,6 +21,8 @@ public class FireController : MonoBehaviour
         
         _fireLight = _firePos.GetComponentInChildren<Light>();
         _fireLight.intensity = 0.0f;
+        
+        _audio = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -39,6 +43,8 @@ public class FireController : MonoBehaviour
         Instantiate(_bulletPrefab, _firePos.position, _firePos.rotation);
 
         StartCoroutine(ShowMuzzleFlash());
+        
+        _audio.PlayOneShot(_fireSFX);
     }
 
     private IEnumerator ShowMuzzleFlash()
