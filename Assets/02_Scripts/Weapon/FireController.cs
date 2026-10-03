@@ -44,7 +44,7 @@ public class FireController : MonoBehaviour
 
         StartCoroutine(ShowMuzzleFlash());
         
-        _audio.PlayOneShot(_fireSFX);
+        _audio.PlayOneShot(_fireSFX, 0.2f);
     }
 
     private IEnumerator ShowMuzzleFlash()

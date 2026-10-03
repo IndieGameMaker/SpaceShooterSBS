@@ -4,6 +4,7 @@ public class Barrel : MonoBehaviour
 {
     [SerializeField] private int _hitCount = 0;
     [SerializeField] private GameObject _expEffect;
+    [SerializeField] private AudioClip _expSFX;
     
     private void OnCollisionEnter(Collision coll)
     {
@@ -35,5 +36,8 @@ public class Barrel : MonoBehaviour
         // 폭발효과 생성한 후 5초에 폭발 프리팹을 소멸
         var obj = Instantiate(_expEffect, transform.position, Quaternion.identity);
         Destroy(obj, 5f);
+        
+        // 폭발음 재생
+        GetComponent<AudioSource>().PlayOneShot(_expSFX, 0.2f);
     }
 }
