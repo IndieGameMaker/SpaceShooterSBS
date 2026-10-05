@@ -1,16 +1,26 @@
 using UnityEngine;
 
+public enum State
+{
+    Idle,
+    Trace,
+    Attack,
+    Die
+}
+
 public class MonsterController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private State _state = State.Idle;
 
-    // Update is called once per frame
-    void Update()
+    [SerializeField, Range(5f, 10f)] private float _traceDist = 8f;
+    [SerializeField] private float _attackDist = 2f;
+
+    private Transform _monsterTr;
+    private Transform _playerTr;
+
+    private void Start()
     {
-        
+        _monsterTr = transform; // GetComponent<Transform>();
+        _playerTr = GameObject.FindGameObjectWithTag("PLAYER")?.transform;
     }
 }
