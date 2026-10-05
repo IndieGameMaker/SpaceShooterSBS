@@ -21,30 +21,35 @@ public class MonsterController : MonoBehaviour
 
     public bool IsDead = false;
 
-    private WaitForSeconds _ws = new WaitForSeconds(0.3f);
+    private WaitForSeconds _ws;
 
     private void Start()
     {
         _monsterTr = transform; // GetComponent<Transform>();
         _playerTr = GameObject.FindGameObjectWithTag("PLAYER")?.transform;
+		_ws = new WaitForSeconds(0.3f);
+
+        StartCoroutine(CheckMonsterState());
     }
 
     private IEnumerator CheckMonsterState()
     {
         while (!IsDead)
         {
-            // 
+            // 공격 사정거리 이내인 경우
             if ((_monsterTr.position - _playerTr.position).sqrMagnitude <= _attackDist * _attackDist)
             {
                 _state = State.Attack;
-                continue;
             }
-            if ((_monsterTr.position - _playerTr.position).sqrMagnitude <= _traceDist * _traceDist)
+			else if ((_monsterTr.position - _playerTr.position).sqrMagnitude <= _traceDist * _traceDist)
             {
                 _state = State.Trace;
-                continue;
             }
-            _state = State.Idle;
+			else
+			{
+            	_state = State.Idle;
+			}
+
             yield return _ws;
         }
     }
