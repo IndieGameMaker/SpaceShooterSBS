@@ -2036,7 +2036,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterController
   _state: 0
-  _traceDist: 5
+  _traceDist: 8.33
   _attackDist: 2
 --- !u!1001 &2405562607288169279
 PrefabInstance:
