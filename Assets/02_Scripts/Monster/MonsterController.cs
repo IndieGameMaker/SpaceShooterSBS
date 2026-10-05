@@ -33,7 +33,8 @@ public class MonsterController : MonoBehaviour
     {
         while (!IsDead)
         {
-            if ((_monsterTr.position - _playerTr.position).sqrMagnitude <= _attackDist)
+            // 
+            if ((_monsterTr.position - _playerTr.position).sqrMagnitude <= _attackDist * _attackDist)
             {
                 _state = State.Attack;
                 continue;
