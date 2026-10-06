@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum State
 {
@@ -18,6 +19,7 @@ public class MonsterController : MonoBehaviour
 
     private Transform _monsterTr;
     private Transform _playerTr;
+    private NavMeshAgent _agent;
 
     public bool IsDead = false;
 
@@ -27,9 +29,11 @@ public class MonsterController : MonoBehaviour
     {
         _monsterTr = transform; // GetComponent<Transform>();
         _playerTr = GameObject.FindGameObjectWithTag("PLAYER")?.transform;
+        _agent = GetComponent<NavMeshAgent>();
 		_ws = new WaitForSeconds(0.3f);
 
         StartCoroutine(CheckMonsterState());
+        StartCoroutine(MonsterAction());
     }
 
     private IEnumerator CheckMonsterState()
@@ -62,14 +66,18 @@ public class MonsterController : MonoBehaviour
             switch (_state)
             {
                 case State.Idle:
-                    Debug.Log("Idle 상태 진입");
+                    _agent.isStopped = true;
                     break;
+                
                 case State.Trace:
-                    Debug.Log("Trace");
+                    _agent.SetDestination(_playerTr.position);
+                    _agent.isStopped = false; // _agent.Resume();
                     break;
+                
                 case State.Attack:
                     Debug.Log("Attack");
                     break;
+                
                 case State.Die:
                     Debug.Log("Die");
                     break;
