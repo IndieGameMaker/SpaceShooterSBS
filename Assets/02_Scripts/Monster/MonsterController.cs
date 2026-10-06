@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -10,13 +11,14 @@ public enum State
     Die
 }
 
-public class MonsterController : MonoBehaviour
+public class MonsterController : MonoBehaviour, IDamageable
 {
     [SerializeField] private State _state = State.Idle;
 
     [SerializeField, Range(5f, 10f)] private float _traceDist = 8f;
     [SerializeField] private float _attackDist = 2f;
-
+    [SerializeField] private float _hp = 100f;
+    
     private Transform _monsterTr;
     private Transform _playerTr;
     private NavMeshAgent _agent;
@@ -90,10 +92,30 @@ public class MonsterController : MonoBehaviour
                     break;
                 
                 case State.Die:
-                    Debug.Log("Die");
+                    IsDead = true;
+                    Debug.Log("Dead");
                     break;
             }
             yield return _ws;
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        _hp -= damage;
+
+        if (_hp <= 0)
+        {
+            _state = State.Die;
+        }
+    }
+
+    private void OnCollisionEnter(Collision coll)
+    {
+        if (coll.collider.CompareTag("BULLET"))
+        {
+            TakeDamage(25f);
+            Destroy(coll.gameObject);
         }
     }
 }
