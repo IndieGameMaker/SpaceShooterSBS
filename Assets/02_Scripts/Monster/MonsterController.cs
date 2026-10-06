@@ -28,6 +28,7 @@ public class MonsterController : MonoBehaviour
     
     // Animator Parameter 해시값 추출
     private static readonly int hashIsTrace = Animator.StringToHash("IsTrace");
+    private static readonly int hashIsAttack = Animator.StringToHash("IsAttack");
 
     private void Start()
     {
@@ -79,11 +80,13 @@ public class MonsterController : MonoBehaviour
                 case State.Trace:
                     _agent.SetDestination(_playerTr.position);
                     _agent.isStopped = false; // _agent.Resume();
+                    _animator.SetBool(hashIsAttack, false);
                     _animator.SetBool(hashIsTrace, true);
                     break;
                 
                 case State.Attack:
-                    Debug.Log("Attack");
+                    _agent.isStopped = true;
+                    _animator.SetBool(hashIsAttack, true);
                     break;
                 
                 case State.Die:
