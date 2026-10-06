@@ -20,16 +20,22 @@ public class MonsterController : MonoBehaviour
     private Transform _monsterTr;
     private Transform _playerTr;
     private NavMeshAgent _agent;
+    private Animator _animator;
 
     public bool IsDead = false;
 
     private WaitForSeconds _ws;
+    
+    // Animator Parameter 해시값 추출
+    private static readonly int hashIsTrace = Animator.StringToHash("IsTrace");
 
     private void Start()
     {
         _monsterTr = transform; // GetComponent<Transform>();
         _playerTr = GameObject.FindGameObjectWithTag("PLAYER")?.transform;
         _agent = GetComponent<NavMeshAgent>();
+        _animator = GetComponent<Animator>();
+        
 		_ws = new WaitForSeconds(0.3f);
 
         StartCoroutine(CheckMonsterState());
@@ -67,11 +73,13 @@ public class MonsterController : MonoBehaviour
             {
                 case State.Idle:
                     _agent.isStopped = true;
+                    _animator.SetBool(hashIsTrace, false);
                     break;
                 
                 case State.Trace:
                     _agent.SetDestination(_playerTr.position);
                     _agent.isStopped = false; // _agent.Resume();
+                    _animator.SetBool(hashIsTrace, true);
                     break;
                 
                 case State.Attack:
