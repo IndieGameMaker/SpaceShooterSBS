@@ -53,4 +53,28 @@ public class MonsterController : MonoBehaviour
             yield return _ws;
         }
     }
+
+    private IEnumerator MonsterAction()
+    {
+        while (!IsDead)
+        {
+            // 몬스터의 상태에 따라서 행동 패턴 분기
+            switch (_state)
+            {
+                case State.Idle:
+                    Debug.Log("Idle 상태 진입");
+                    break;
+                case State.Trace:
+                    Debug.Log("Trace");
+                    break;
+                case State.Attack:
+                    Debug.Log("Attack");
+                    break;
+                case State.Die:
+                    Debug.Log("Die");
+                    break;
+            }
+            yield return _ws;
+        }
+    }
 }
