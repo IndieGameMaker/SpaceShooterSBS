@@ -32,6 +32,7 @@ public class MonsterController : MonoBehaviour, IDamageable
     private static readonly int hashIsTrace = Animator.StringToHash("IsTrace");
     private static readonly int hashIsAttack = Animator.StringToHash("IsAttack");
     private static readonly int hashHit = Animator.StringToHash("Hit");
+    private static readonly int hashDie = Animator.StringToHash("Die");
 
     private void Start()
     {
@@ -97,6 +98,7 @@ public class MonsterController : MonoBehaviour, IDamageable
                 case State.Die:
                     IsDead = true;
                     _agent.isStopped = true;
+                    _animator.SetTrigger(hashDie);
                     break;
             }
             yield return _ws;
