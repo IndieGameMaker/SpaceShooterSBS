@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 6.0f;
     // 회전 속도
     [SerializeField] private float _turnSpeed = 50.0f;
+
+    private float _maxHp = 100f;
+    private float _currHp = 100f;
     
     // 컴포넌트
     private Animator _animator;
@@ -93,6 +96,27 @@ public class PlayerController : MonoBehaviour
         }
         // Debug.Log($"Move {_moveDir}");
     }
-    
-    
+
+    private void OnTriggerEnter(Collider coll)
+    {
+        if (coll.CompareTag("PUNCH"))
+        {
+            _currHp -= 10f;
+            if (_currHp <= 0f)
+            {
+                PlayerDie();
+            }
+        }
+    }
+
+    private void PlayerDie()
+    {
+        // 스테이지에 있는 모든 몬스터를 추출
+        GameObject[] monsters = GameObject.FindGameObjectsWithTag("MONSTER");
+        
+        foreach (GameObject monster in monsters)
+        {
+            monster.SendMessage("YouWin", SendMessageOptions.DontRequireReceiver);   
+        }
+    }
 }

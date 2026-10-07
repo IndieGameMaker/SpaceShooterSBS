@@ -128,4 +128,9 @@ public class MonsterController : MonoBehaviour, IDamageable
             Destroy(coll.gameObject);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("[MONSTER] " + other.gameObject.name);
+    }
 }
