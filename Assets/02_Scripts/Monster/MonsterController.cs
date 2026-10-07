@@ -34,6 +34,7 @@ public class MonsterController : MonoBehaviour, IDamageable
     private static readonly int hashIsAttack = Animator.StringToHash("IsAttack");
     private static readonly int hashHit = Animator.StringToHash("Hit");
     private static readonly int hashDie = Animator.StringToHash("Die");
+    private static readonly int hashPlayerDie = Animator.StringToHash("PlayerDie");
 
     private void Start()
     {
@@ -129,8 +130,10 @@ public class MonsterController : MonoBehaviour, IDamageable
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void YouWin()
     {
-        Debug.Log("[MONSTER] " + other.gameObject.name);
+        StopAllCoroutines();
+        _agent.isStopped = true;
+        _animator.SetTrigger(hashPlayerDie);
     }
 }
