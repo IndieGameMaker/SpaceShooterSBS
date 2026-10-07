@@ -31,6 +31,7 @@ public class MonsterController : MonoBehaviour, IDamageable
     // Animator Parameter 해시값 추출
     private static readonly int hashIsTrace = Animator.StringToHash("IsTrace");
     private static readonly int hashIsAttack = Animator.StringToHash("IsAttack");
+    private static readonly int hashHit = Animator.StringToHash("Hit");
 
     private void Start()
     {
@@ -49,6 +50,8 @@ public class MonsterController : MonoBehaviour, IDamageable
     {
         while (!IsDead)
         {
+            if (_state == State.Die) yield break;
+            
             // 공격 사정거리 이내인 경우
             if ((_monsterTr.position - _playerTr.position).sqrMagnitude <= _attackDist * _attackDist)
             {
@@ -93,7 +96,7 @@ public class MonsterController : MonoBehaviour, IDamageable
                 
                 case State.Die:
                     IsDead = true;
-                    Debug.Log("Dead");
+                    _agent.isStopped = true;
                     break;
             }
             yield return _ws;
@@ -115,6 +118,8 @@ public class MonsterController : MonoBehaviour, IDamageable
         if (coll.collider.CompareTag("BULLET"))
         {
             TakeDamage(25f);
+            _animator.SetTrigger(hashHit);
+            
             Destroy(coll.gameObject);
         }
     }
