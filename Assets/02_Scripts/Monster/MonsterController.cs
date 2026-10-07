@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public enum State
 {
@@ -35,6 +36,7 @@ public class MonsterController : MonoBehaviour, IDamageable
     private static readonly int hashHit = Animator.StringToHash("Hit");
     private static readonly int hashDie = Animator.StringToHash("Die");
     private static readonly int hashPlayerDie = Animator.StringToHash("PlayerDie");
+    private static readonly int hashSpeed = Animator.StringToHash("Speed");
 
     private void Start()
     {
@@ -144,6 +146,7 @@ public class MonsterController : MonoBehaviour, IDamageable
     {
         StopAllCoroutines();
         _agent.isStopped = true;
+        _animator.SetFloat(hashSpeed, Random.Range(0.8f, 1.3f));
         _animator.SetTrigger(hashPlayerDie);
     }
 }
