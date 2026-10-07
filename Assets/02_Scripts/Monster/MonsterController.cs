@@ -50,6 +50,16 @@ public class MonsterController : MonoBehaviour, IDamageable
         StartCoroutine(MonsterAction());
     }
 
+    private void OnEnable()
+    {
+        PlayerController.OnPlayerDie += YouWin;
+    }
+
+    private void OnDisable()
+    {
+        PlayerController.OnPlayerDie -= YouWin;
+    }
+
     private IEnumerator CheckMonsterState()
     {
         while (!IsDead)

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,6 +28,9 @@ public class PlayerController : MonoBehaviour
     private readonly int hashForward = Animator.StringToHash("Forward");
     private readonly int hashStrafe = Animator.StringToHash("Strafe");
 
+    // 이벤트 정의
+    public static event Action OnPlayerDie; 
+    
     #region 유니티 생명주기
     private void Awake()
     {
@@ -104,7 +108,8 @@ public class PlayerController : MonoBehaviour
             _currHp -= 10f;
             if (_currHp <= 0f)
             {
-                PlayerDie();
+                OnPlayerDie?.Invoke();
+                // PlayerDie();
             }
         }
     }
@@ -112,11 +117,11 @@ public class PlayerController : MonoBehaviour
     private void PlayerDie()
     {
         // 스테이지에 있는 모든 몬스터를 추출
-        GameObject[] monsters = GameObject.FindGameObjectsWithTag("MONSTER");
-        
-        foreach (GameObject monster in monsters)
-        {
-            monster.SendMessage("YouWin", SendMessageOptions.DontRequireReceiver);   
-        }
+        // GameObject[] monsters = GameObject.FindGameObjectsWithTag("MONSTER");
+        //
+        // foreach (GameObject monster in monsters)
+        // {
+        //     monster.SendMessage("YouWin", SendMessageOptions.DontRequireReceiver);   
+        // }
     }
 }
