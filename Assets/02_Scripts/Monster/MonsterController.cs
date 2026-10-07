@@ -23,6 +23,7 @@ public class MonsterController : MonoBehaviour, IDamageable
     private Transform _playerTr;
     private NavMeshAgent _agent;
     private Animator _animator;
+    private CapsuleCollider _collider;
 
     public bool IsDead = false;
 
@@ -40,6 +41,7 @@ public class MonsterController : MonoBehaviour, IDamageable
         _playerTr = GameObject.FindGameObjectWithTag("PLAYER")?.transform;
         _agent = GetComponent<NavMeshAgent>();
         _animator = GetComponent<Animator>();
+        _collider = GetComponent<CapsuleCollider>();
         
 		_ws = new WaitForSeconds(0.3f);
 
@@ -99,6 +101,7 @@ public class MonsterController : MonoBehaviour, IDamageable
                     IsDead = true;
                     _agent.isStopped = true;
                     _animator.SetTrigger(hashDie);
+                    _collider.enabled = false;
                     break;
             }
             yield return _ws;
