@@ -1,16 +1,31 @@
 using UnityEngine;
 
-public class Singleton : MonoBehaviour
+public abstract class Singleton<T> : MonoBehaviour where T : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private static T _instance;
 
-    // Update is called once per frame
-    void Update()
+    public static T Instance
     {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = FindAnyObjectByType<T>();
+            }
+            
+            return _instance;
+        }
+    }
+    
+    protected virtual void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
         
+        _instance = this as T;
+        DontDestroyOnLoad(this.gameObject);
     }
 }
