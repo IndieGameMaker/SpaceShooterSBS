@@ -2322,6 +2322,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
   _spawnPoints: []
+  _monsterPrefab: {fileID: 6608897591082330709, guid: a313c9c82535e456fa8d97f27d20965f, type: 3}
+  _createRate: 3
 --- !u!4 &1332609900
 Transform:
   m_ObjectHideFlags: 0

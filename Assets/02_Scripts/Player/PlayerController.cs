@@ -109,6 +109,7 @@ public class PlayerController : MonoBehaviour
             if (_currHp <= 0f)
             {
                 OnPlayerDie?.Invoke();
+                GameManager.Instance.IsGameOver = true;
                 // PlayerDie();
             }
         }

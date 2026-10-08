@@ -16,7 +16,7 @@ public class MonsterController : MonoBehaviour, IDamageable
 {
     [SerializeField] private State _state = State.Idle;
 
-    [SerializeField, Range(5f, 10f)] private float _traceDist = 8f;
+    [SerializeField, Range(5f, 50f)] private float _traceDist = 8f;
     [SerializeField] private float _attackDist = 2f;
     [SerializeField] private float _hp = 100f;
     
