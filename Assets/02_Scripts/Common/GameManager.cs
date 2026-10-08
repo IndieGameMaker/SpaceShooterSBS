@@ -16,6 +16,18 @@ public class GameManager : Singleton<GameManager>
         // _STAGES 게임오브젝트를 검색
         var pointGroup = GameObject.Find("_STAGES/SpawnPointGroup").transform;
         pointGroup.GetComponentsInChildren<Transform>(_spawnPoints);
-        
+    }
+
+    private void Start()
+    {
+        // Invoke(nameof(CreateMonster), _createRate); // 1회 호출
+        InvokeRepeating(nameof(CreateMonster), 2.0f, _createRate);
+    }
+
+    private void CreateMonster()
+    {
+        // 생성할 위치
+        var index = Random.Range(1, _spawnPoints.Count);
+        Instantiate(_monsterPrefab, _spawnPoints[index].position, _spawnPoints[index].rotation);
     }
 }
