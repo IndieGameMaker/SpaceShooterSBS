@@ -4,7 +4,11 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private List<Transform> _spawnPoints;
-
+    [SerializeField] private GameObject _monsterPrefab;
+    [Header("생성 옵션")] 
+    [SerializeField] private float _createRate = 3.0f;
+    
+    
     protected override void Awake()
     {
         base.Awake();
@@ -13,6 +17,5 @@ public class GameManager : Singleton<GameManager>
         var pointGroup = GameObject.Find("_STAGES/SpawnPointGroup").transform;
         pointGroup.GetComponentsInChildren<Transform>(_spawnPoints);
         
-        //var points = stages.Find("SpawnPointGroup").transform;
     }
 }
