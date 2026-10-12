@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private float _createRate = 3.0f;
     
     // Object Pool
-    [SerializeField] private List<GameObject> _monsterPool;
+    [SerializeField] private List<Transform> _monsterPool;
     [SerializeField] private int _maxPool = 10;
 
     private bool _isGameOver = false;
@@ -41,7 +41,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         // Invoke(nameof(CreateMonster), _createRate); // 1회 호출
-        // InvokeRepeating(nameof(CreateMonster), 2.0f, _createRate);
+        InvokeRepeating(nameof(CreateMonster), 2.0f, _createRate);
 
         // Monster Pool 에 몬스터 생성
         for (int i = 0; i < _maxPool; i++)
@@ -49,7 +49,7 @@ public class GameManager : Singleton<GameManager>
             var monster = Instantiate(_monsterPrefab);
             monster.name = $"Monster_{i:00}";
             monster.SetActive(false);
-            _monsterPool.Add(monster);
+            _monsterPool.Add(monster.transform);
         }
     }
 
@@ -57,6 +57,17 @@ public class GameManager : Singleton<GameManager>
     {
         // 생성할 위치
         var index = Random.Range(1, _spawnPoints.Count);
-        Instantiate(_monsterPrefab, _spawnPoints[index].position, _spawnPoints[index].rotation);
+        // Instantiate(_monsterPrefab, _spawnPoints[index].position, _spawnPoints[index].rotation);
+        foreach (var monster in _monsterPool)
+        {
+            if (monster.gameObject.activeSelf == false)
+            {
+                monster.position = _spawnPoints[index].position;
+                var dir = Vector3.zero - _spawnPoints[index].position;
+                monster.rotation = Quaternion.LookRotation(dir);
+                monster.gameObject.SetActive(true);
+                break;
+            }
+        }
     }
 }
