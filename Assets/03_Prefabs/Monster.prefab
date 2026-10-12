@@ -610,7 +610,6 @@ MonoBehaviour:
   _traceDist: 50
   _attackDist: 2
   _hp: 100
-  IsDead: 0
 --- !u!195 &8715236905460001043
 NavMeshAgent:
   m_ObjectHideFlags: 0

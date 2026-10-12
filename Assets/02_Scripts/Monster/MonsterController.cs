@@ -115,10 +115,21 @@ public class MonsterController : MonoBehaviour, IDamageable
                     _agent.isStopped = true;
                     _animator.SetTrigger(hashDie);
                     _collider.enabled = false;
+                    Invoke(nameof(ReturnPool), 3f);
                     break;
             }
             yield return _ws;
         }
+    }
+
+    private void ReturnPool()
+    {
+        gameObject.SetActive(false);
+        
+        // 속성 초기화
+        _hp = 100f;
+        _state = State.Idle;
+        _collider.enabled = true;
     }
 
     public void TakeDamage(float damage)
