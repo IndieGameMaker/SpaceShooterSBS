@@ -1,23 +1,11 @@
 using UnityEngine;
 
-public class Barrel : MonoBehaviour
+public class Barrel : MonoBehaviour, IDamageable
 {
     [SerializeField] private int _hitCount = 0;
     [SerializeField] private GameObject _expEffect;
     [SerializeField] private AudioClip _expSFX;
     
-    private void OnCollisionEnter(Collision coll)
-    {
-        if (coll.collider.CompareTag("BULLET"))
-        {
-            //_hitCount++;
-            if (++_hitCount == 3)
-            {
-                ExplosionBarrel();
-            }
-        }
-    }
-
     private void ExplosionBarrel()
     {
         // 물리엔진 런타임 적용
@@ -39,5 +27,14 @@ public class Barrel : MonoBehaviour
         
         // 폭발음 재생
         GetComponent<AudioSource>().PlayOneShot(_expSFX, 0.2f);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        //_hitCount++;
+        if (++_hitCount == 3)
+        {
+            ExplosionBarrel();
+        }        
     }
 }
