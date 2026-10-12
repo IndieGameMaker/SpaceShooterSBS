@@ -37,6 +37,11 @@ public class FireController : MonoBehaviour
         _fireAction.action.Disable();
     }
 
+    private void Update()
+    {
+        Debug.DrawRay(_firePos.position, _firePos.forward * 10.0f, Color.green);
+    }
+
     private void Fire(InputAction.CallbackContext ctx)
     {
         // Instantiate (생성할객체, 좌표, 각도, [부모객체])

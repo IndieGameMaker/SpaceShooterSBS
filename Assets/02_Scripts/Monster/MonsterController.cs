@@ -38,7 +38,7 @@ public class MonsterController : MonoBehaviour, IDamageable
     private static readonly int hashPlayerDie = Animator.StringToHash("PlayerDie");
     private static readonly int hashSpeed = Animator.StringToHash("Speed");
 
-    private void Start()
+    private void Awake()
     {
         _monsterTr = transform; // GetComponent<Transform>();
         _playerTr = GameObject.FindGameObjectWithTag("PLAYER")?.transform;
@@ -47,13 +47,14 @@ public class MonsterController : MonoBehaviour, IDamageable
         _collider = GetComponent<CapsuleCollider>();
         
 		_ws = new WaitForSeconds(0.3f);
-
-        StartCoroutine(CheckMonsterState());
-        StartCoroutine(MonsterAction());
     }
 
     private void OnEnable()
     {
+        // Respawn 됐을 때 코루틴 재가동
+        StartCoroutine(CheckMonsterState());
+        StartCoroutine(MonsterAction());
+        
         PlayerController.OnPlayerDie += YouWin;
     }
 
@@ -130,6 +131,7 @@ public class MonsterController : MonoBehaviour, IDamageable
         _hp = 100f;
         _state = State.Idle;
         _collider.enabled = true;
+        IsDead = false;
     }
 
     public void TakeDamage(float damage)
