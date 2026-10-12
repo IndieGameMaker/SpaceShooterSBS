@@ -53,6 +53,15 @@ public class FireController : MonoBehaviour
         {
             // 광선에 무엇인가 충돌했을 경우
             hit.collider.GetComponent<IDamageable>()?.TakeDamage(20.0f);
+            //
+            // if (hit.collider.CompareTag("Barrel"))
+            // {
+            //     hit.collider.GetComponent<Barrel>().Explosion();
+            // }
+            // else if (hit.collider.CompareTag("MONSTER"))
+            // {
+            //     hit.collider.GetComponent<MonsterController>().HitDamage();
+            // }
         }
 
         StartCoroutine(ShowMuzzleFlash());
