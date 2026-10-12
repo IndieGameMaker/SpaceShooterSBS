@@ -9,6 +9,7 @@ public class FireController : MonoBehaviour
     [SerializeField] private AudioClip _fireSFX;
     
     [SerializeField] private InputActionReference _fireAction;
+    [SerializeField] private LayerMask _hitLayer;
     
     private MeshRenderer _muzzleFlash;
     private Light _fireLight;
@@ -48,7 +49,7 @@ public class FireController : MonoBehaviour
         // Instantiate(_bulletPrefab, _firePos.position, _firePos.rotation);
         
         // Raycast
-        if (Physics.Raycast(_firePos.position, _firePos.forward, out RaycastHit hit, 10.0f))
+        if (Physics.Raycast(_firePos.position, _firePos.forward, out RaycastHit hit, 10.0f, _hitLayer))
         {
             // 광선에 무엇인가 충돌했을 경우
             Debug.Log(hit.transform.name);

@@ -1589,6 +1589,9 @@ MonoBehaviour:
   _bulletPrefab: {fileID: 2081667579395329317, guid: 5cc0bff864b5941569675450e2a0d3fb, type: 3}
   _fireSFX: {fileID: 8300000, guid: 641ff25f5da444ddf8874d961a56f0c9, type: 3}
   _fireAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  _hitLayer:
+    serializedVersion: 2
+    m_Bits: 2304
 --- !u!82 &969595187
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2324,6 +2327,8 @@ MonoBehaviour:
   _spawnPoints: []
   _monsterPrefab: {fileID: 6608897591082330709, guid: a313c9c82535e456fa8d97f27d20965f, type: 3}
   _createRate: 3
+  _monsterPool: []
+  _maxPool: 10
 --- !u!4 &1332609900
 Transform:
   m_ObjectHideFlags: 0
