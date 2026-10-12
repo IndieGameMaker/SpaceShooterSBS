@@ -9,6 +9,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject _monsterPrefab;
     [Header("생성 옵션")] 
     [SerializeField] private float _createRate = 3.0f;
+    
+    // Object Pool
+    [SerializeField] private List<GameObject> _monsterPool;
+    [SerializeField] private int _maxPool = 10;
 
     private bool _isGameOver = false;
     
@@ -37,7 +41,16 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         // Invoke(nameof(CreateMonster), _createRate); // 1회 호출
-        InvokeRepeating(nameof(CreateMonster), 2.0f, _createRate);
+        // InvokeRepeating(nameof(CreateMonster), 2.0f, _createRate);
+
+        // Monster Pool 에 몬스터 생성
+        for (int i = 0; i < _maxPool; i++)
+        {
+            var monster = Instantiate(_monsterPrefab);
+            monster.name = $"Monster_{i:00}";
+            monster.SetActive(false);
+            _monsterPool.Add(monster);
+        }
     }
 
     private void CreateMonster()
