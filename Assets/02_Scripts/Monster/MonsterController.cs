@@ -137,7 +137,8 @@ public class MonsterController : MonoBehaviour, IDamageable
     public void TakeDamage(float damage)
     {
         _hp -= damage;
-
+        _animator.SetTrigger(hashHit);
+        
         if (_hp <= 0)
         {
             _state = State.Die;
@@ -148,9 +149,6 @@ public class MonsterController : MonoBehaviour, IDamageable
     {
         if (coll.collider.CompareTag("BULLET"))
         {
-            TakeDamage(25f);
-            _animator.SetTrigger(hashHit);
-            
             Destroy(coll.gameObject);
         }
     }

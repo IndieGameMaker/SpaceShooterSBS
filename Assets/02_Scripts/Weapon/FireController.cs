@@ -52,7 +52,7 @@ public class FireController : MonoBehaviour
         if (Physics.Raycast(_firePos.position, _firePos.forward, out RaycastHit hit, 10.0f, _hitLayer))
         {
             // 광선에 무엇인가 충돌했을 경우
-            Debug.Log(hit.transform.name);
+            hit.collider.GetComponent<IDamageable>()?.TakeDamage(10.0f);
         }
 
         StartCoroutine(ShowMuzzleFlash());
