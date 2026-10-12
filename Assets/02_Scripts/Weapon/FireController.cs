@@ -45,7 +45,14 @@ public class FireController : MonoBehaviour
     private void Fire(InputAction.CallbackContext ctx)
     {
         // Instantiate (생성할객체, 좌표, 각도, [부모객체])
-        Instantiate(_bulletPrefab, _firePos.position, _firePos.rotation);
+        // Instantiate(_bulletPrefab, _firePos.position, _firePos.rotation);
+        
+        // Raycast
+        if (Physics.Raycast(_firePos.position, _firePos.forward, out RaycastHit hit, 10.0f))
+        {
+            // 광선에 무엇인가 충돌했을 경우
+            Debug.Log(hit.transform.name);
+        }
 
         StartCoroutine(ShowMuzzleFlash());
         
