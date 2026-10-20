@@ -116,6 +116,7 @@ public class MonsterController : MonoBehaviour, IDamageable
                     _agent.isStopped = true;
                     _animator.SetTrigger(hashDie);
                     _collider.enabled = false;
+                    GameManager.Instance.DisplayScore(50);
                     Invoke(nameof(ReturnPool), 3f);
                     break;
             }

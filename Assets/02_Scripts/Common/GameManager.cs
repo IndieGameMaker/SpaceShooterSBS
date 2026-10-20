@@ -25,6 +25,7 @@ public class GameManager : Singleton<GameManager>
     
     // 스코어 저장용 변수
     private int _totScore;
+    private const string TOT_SCORE = "TOT_SCORE";
 
     public void ChangeHpBar(float currHp, float maxHp)
     {
@@ -34,7 +35,10 @@ public class GameManager : Singleton<GameManager>
     public void DisplayScore(int score)
     {
         _totScore += score;
-        _scoreText.text = $"SCORE: <color=#ff0000>{_totScore}</color>";
+        _scoreText.text = $"SCORE: <color=#ff0000>{_totScore:00000}</color>";
+        
+        // 점수 저장 기능
+        PlayerPrefs.SetInt(TOT_SCORE, _totScore);
     }
 
     public bool IsGameOver
@@ -61,6 +65,16 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        // 저장된 최고 점수 불러오기
+        if (PlayerPrefs.HasKey(TOT_SCORE))
+        {
+            _totScore = PlayerPrefs.GetInt(TOT_SCORE);
+            DisplayScore(0);
+        }
+
+        // _totScore = PlayerPrefs.GetInt(TOT_SCORE, 0);
+        // DisplayScore(0);
+        
         // Invoke(nameof(CreateMonster), _createRate); // 1회 호출
         InvokeRepeating(nameof(CreateMonster), 2.0f, _createRate);
 
