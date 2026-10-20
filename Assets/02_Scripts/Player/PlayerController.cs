@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -19,8 +18,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _moveSpeed = 6.0f;
     // 회전 속도
     [SerializeField] private float _turnSpeed = 50.0f;
-    // Hp Bar 이미지
-    [SerializeField] private Image _hpBar;
 
     private float _maxHp = 100f;
     private float _currHp = 100f;
@@ -109,6 +106,9 @@ public class PlayerController : MonoBehaviour
         if (_currHp > 0 && coll.CompareTag("PUNCH"))
         {
             _currHp -= 10f;
+
+            GameManager.Instance.ChangeHpBar(_currHp, _maxHp);
+
             if (_currHp <= 0f)
             {
                 OnPlayerDie?.Invoke();
