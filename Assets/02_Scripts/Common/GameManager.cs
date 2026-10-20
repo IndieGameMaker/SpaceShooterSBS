@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -18,12 +19,22 @@ public class GameManager : Singleton<GameManager>
     // UI
     [Header("UI")]
     [SerializeField] private Image _hpBar;
+    [SerializeField] private TextMeshProUGUI _scoreText;
 
     private bool _isGameOver = false;
+    
+    // 스코어 저장용 변수
+    private int _totScore;
 
     public void ChangeHpBar(float currHp, float maxHp)
     {
         _hpBar.fillAmount = currHp / maxHp;
+    }
+
+    public void DisplayScore(int score)
+    {
+        _totScore += score;
+        _scoreText.text = $"SCORE: <color=#ff0000>{_totScore}</color>";
     }
 
     public bool IsGameOver
