@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Random = UnityEngine.Random;
@@ -19,6 +20,8 @@ public class MonsterController : MonoBehaviour, IDamageable
     [SerializeField, Range(5f, 50f)] private float _traceDist = 8f;
     [SerializeField] private float _attackDist = 2f;
     [SerializeField] private float _hp = 100f;
+
+    [SerializeField] private List<Collider> _colliders;
     
     private Transform _monsterTr;
     private Transform _playerTr;
@@ -115,7 +118,9 @@ public class MonsterController : MonoBehaviour, IDamageable
                     IsDead = true;
                     _agent.isStopped = true;
                     _animator.SetTrigger(hashDie);
-                    _collider.enabled = false;
+                    // _collider.enabled = false;
+
+                    foreach (var collider in _colliders) collider.enabled = false;
                     GameManager.Instance.DisplayScore(50);
                     Invoke(nameof(ReturnPool), 3f);
                     break;
@@ -131,7 +136,8 @@ public class MonsterController : MonoBehaviour, IDamageable
         // 속성 초기화
         _hp = 100f;
         _state = State.Idle;
-        _collider.enabled = true;
+        foreach (var collider in _colliders) collider.enabled = true;
+        // _collider.enabled = true;
         IsDead = false;
     }
 

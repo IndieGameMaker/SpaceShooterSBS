@@ -610,6 +610,11 @@ MonoBehaviour:
   _traceDist: 50
   _attackDist: 2
   _hp: 100
+  _colliders:
+  - {fileID: 4936808816628729262}
+  - {fileID: 4705104066766072559}
+  - {fileID: 7943809261007175104}
+  IsDead: 0
 --- !u!195 &8715236905460001043
 NavMeshAgent:
   m_ObjectHideFlags: 0

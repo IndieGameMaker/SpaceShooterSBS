@@ -27,6 +27,14 @@ public class Barrel : MonoBehaviour, IDamageable
         
         // 폭발음 재생
         GetComponent<AudioSource>().PlayOneShot(_expSFX, 0.2f);
+        
+        // 주변의 몬스터에게 데미지 전달
+        Collider[] monsters = Physics.OverlapSphere(transform.position, 20.0f, 1 << 8);
+        foreach (var monster in monsters)
+        {
+            monster.GetComponent<IDamageable>()?.TakeDamage(50.0f);
+            Debug.Log("폭발 데미지 전달 " + monster.name);
+        }
     }
 
     public void TakeDamage(float damage)
