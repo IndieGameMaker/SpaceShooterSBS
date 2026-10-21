@@ -66,6 +66,10 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         // 저장된 최고 점수 불러오기
+        // DB저장 : SQLite
+        // Cloud 저장, Cloud DB에 저장 (AWS DynamoDB, AWS E2C MySQLs, MariaDB, PostgreSQL, S3(x))
+        // Supabase DB (PostgreSQL)
+        // UGS (UnityGamingService) -> 일종의 AWS
         if (PlayerPrefs.HasKey(TOT_SCORE))
         {
             _totScore = PlayerPrefs.GetInt(TOT_SCORE);
